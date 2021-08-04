@@ -5,12 +5,21 @@ import React from "react";
 import InsertEmotionIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import "./Chat.css";
+import axios from "axios";
 function Chat({ messages }) {
   const [input, setInput] = useState();
 
-  const sendMessage = (e) => {
+  const sendMessage =async (e) => {
     e.preventDefault();
-  };
+    
+    await axios.post("/messages/new",{
+    message:input,
+    name:"DEMO APP",
+    timestamp:"Just Now",
+    received:false,
+});
+  setInput("");
+};
   return (
     <div className="chat">
       <div className="chat_header">
